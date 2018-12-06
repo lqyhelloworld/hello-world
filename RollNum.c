@@ -1,5 +1,30 @@
 //å›æ–‡æ•°ï¼šæ­£è¯»ä¸åè¯»ç›¸ç­‰çš„æ•°
 //2018/11/14 æ›´æ–°
-int main() {
-    //to do sth
+#include<stdio.h>
+int main(){
+	int x,n,t;
+	scanf("%d",&x);
+	n=0;
+	t=x;
+	while(1){
+		if(t>=10){
+		n=n*10+x%10;
+		x=x/10;
+		if(x<10){
+			n=n*10+x;
+			break;
+		}
+	    }
+	    else{
+	    	printf("%dÊÇ»ØÎÄÊı",t);
+	    	break;
+		}
+	}
+	if(n==t)
+	{
+		printf("%dÊÇ»ØÎÄÊı",t);
+	}
+	else
+	printf("%d²»ÊÇ»ØÎÄÊı",t);
+	return 0;
 }
