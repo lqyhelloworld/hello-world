@@ -1,22 +1,122 @@
-/*æ»¡è¶³ä¸‹åˆ—æ¡ä»¶çš„è‡ªç„¶æ•°ç§°ä¸ºè¶…çº§ç´ æ•°:è¯¥æ•°æœ¬èº«,æ‰€æœ‰æ•°å­—ä¹‹å’Œ,æ‰€æœ‰æ•°å­—ä¹‹ç§¯ä»¥åŠæ‰€æœ‰æ•°å­—çš„å¹³æ–¹å’Œéƒ½æ˜¯ç´ æ•°.ä¾‹å¦‚113å°±æ˜¯ä¸€ä¸ªè¶…çº§ç´ æ•°.æ±‚[100,9999]ä¹‹å†…:(1)è¶…çº§ç´ æ•°çš„ä¸ªæ•°.(2)æ‰€æœ‰è¶…çº§ç´ æ•°ä¹‹å’Œ.(3)æœ€å¤§çš„è¶…çº§ç´ æ•°.*/
+/*Âú×ãÏÂÁÐÌõ¼þµÄ×ÔÈ»Êý³ÆÎª³¬¼¶ËØÊý:¸ÃÊý±¾Éí,ËùÓÐÊý×ÖÖ®ºÍ,ËùÓÐÊý×ÖÖ®»ýÒÔ¼°ËùÓÐÊý×ÖµÄÆ½·½ºÍ¶¼ÊÇËØÊý.ÀýÈç113¾ÍÊÇÒ»¸ö³¬¼¶ËØÊý.Çó[100,9999]Ö®ÄÚ:
+(1)³¬¼¶ËØÊýµÄ¸öÊý.
+(2)ËùÓÐ³¬¼¶ËØÊýÖ®ºÍ.
+(3)×î´óµÄ³¬¼¶ËØÊý.*/
 //2018/11/14 æ›´æ–°
+#include<stdio.h> 
 int sum_bit(int num) {
+	int x,y,i,j,prime1;
+	y=0;
+	while(num>0){
+		x=num%10;
+		y=y+x;
+		num=num/10;
+	}
+	for(i=2;i<y;i++){
+		if(y%i==0)//ËùÓÐÊý×ÖÖ®ºÍ²»ÊÇËØÊý 
+		{
+			break;
+		}
+		else
+		j=i;
+	}
+	if(j==y-1){//ËùÓÐÊý×ÖÖ®ºÍÊÇËØÊý 
+		prime1=1;
+	}
+	else
+	prime1=0;
+  if(prime1==1)
+  return 1;
+  else
   return 0;
 }
 
 int multi_bit(int num) {
+	int x,y,i,j,prime2;
+	y=1;
+	while(num>0){
+		x=num%10;
+		y=y*x;
+		num=num/10;
+	}
+	for(i=2;i<y;i++){
+	    if(y%i==0){//ËùÓÐÊý×ÖÖ®»ý²»ÊÇËØÊý 
+	    	break;
+		}
+		else
+		j=i;
+	}
+	if(j==y-1){//ËùÓÐÊý×ÖÖ®»ýÊÇËØÊý 
+		prime2=1;
+	}
+	else
+	prime2=0;
+  if(prime2==1)
+  return 1;
+  else
   return 0;
 }
 
 int square_sum_bit(int num) {
+	int x,y,i,j,prime3;
+	y=0;
+	while(num>0){
+		x=num%10;
+		y=y+x*x;
+		num=num/10;
+		}
+	for(i=2;i<y;i++){
+		if(y%i==0){//ËùÓÐÊý×ÖÆ½·½ºÍ²»ÊÇËØÊý 
+			break;
+		}
+		else
+		j=i;
+	}	
+	if(j=y-1){//ËùÓÐÊý×ÖÆ½·½ºÍÊÇËØÊý 
+		prime3=1;
+	}
+	else
+	prime3=0;
+  if(prime3==1)
+  return 1;
+  else
   return 0;
 }
 
-bool isprime(int num) {
-  return false;
+int isprime(int num) {
+	int i,j,prime;
+	for(i=2;i<num;i++){
+		if(num%i==0){
+			break;
+		}
+		else
+		j=i;
+	}
+	if(j==num-1){
+		prime=1;
+	}
+	else
+	prime=0;
+   if(prime==1)	
+  return 1;
+  else
+  return 0;
 }
 
 int main() {
-  if(isprime(113)&&isprime(sum_bit(113))&&isprime(multi_bit(113))&&isprime(square_sum_bit(113)))
-    //to do sth
+  int i,n,sum,max;
+  n=0;
+  sum=0;
+  for(i=100;i<10000;i++){
+  	if(sum_bit(i)==1&&multi_bit(i)==1&&square_sum_bit(i)==1&&isprime(i)==1){
+  		printf("%dÊÇ³¬¼¶ËØÊý\n",i);
+  		n+=1;
+  		sum+=i;
+  		max=i;
+	  }
+  }
+  printf("³¬¼¶ËØÊýµÄ¸öÊýÎª%d\n",n);
+  printf("ËùÓÐ³¬¼¶ËØÊýÖ®ºÍÎª%d\n",sum);
+  printf("×î´óµÄ³¬¼¶ËØÊýÎª%d\n",max);
+  return 0;  
 }
